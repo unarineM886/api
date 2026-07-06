@@ -1,7 +1,8 @@
 package com.app.api.controller.v1;
 
 import com.app.api.Entity.Customer;
-import com.app.api.Service.InstallationLogService;
+//import com.app.api.Service.InstallationLogService;
+import com.app.api.respitory.CustomerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +14,29 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 public class InstallationLogControllerV1 {
 
-    @Autowired
+    /*@Autowired
     private InstallationLogService installationLogService;
+    */
+    
+    @Autowired
+    private CustomerRepository customerRepository;
 
+    
+    // ✅ GET ALL CUSTOMERS
+    @GetMapping("/all")
+    public Map<String, Object> getAllCustomers() {
+        List<Customer> customers = customerRepository.findAll();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("customers", customers);
+
+        return response;
+    }
+    
+    
 
     // ✅ GET scheduled customers
-    @GetMapping("/scheduled")
+    /*@GetMapping("/scheduled")
     public Map<String, Object> getScheduledCustomers() {
         List<Customer> customers = installationLogService.getScheduledCustomers();
 
@@ -26,44 +44,40 @@ public class InstallationLogControllerV1 {
         response.put("customers", customers);
 
         return response;
-    }
+    }*/
+    
+    // ✅ GET SCHEDULED CUSTOMERS
+    @GetMapping("/scheduled")
+    public Map<String, Object> getScheduledCustomers() {
 
-    // ✅ UPDATE CUSTOMER DETAILS
-    @PutMapping("/update/{custRef}")
-    public Map<String, Object> updateCustomer(
-            @PathVariable String custRef,
-            @RequestBody Map<String, Object> body) {
-
-        boolean updated = installationLogService.updateCustomer(custRef, body);
+        List<Customer> customers = customerRepository.findByOrderStatus("Scheduled");
 
         Map<String, Object> response = new HashMap<>();
-        response.put("success", updated);
+        response.put("customers", customers);
 
         return response;
     }
 
-    // ✅ UPDATE INSTALLATION DETAILS
-    @PutMapping("/installation/{custRef}")
-    public Map<String, Object> updateInstallation(
-            @PathVariable String custRef,
-            @RequestBody Map<String, Object> body) {
 
-        boolean updated = installationLogService.updateInstallation(custRef, body);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("success", updated);
-
-        return response;
-    }
 
     // ✅ DELETE CUSTOMER
     @DeleteMapping("/delete/{custRef}")
     public Map<String, Object> deleteCustomer(@PathVariable String custRef) {
 
-        boolean deleted = installationLogService.deleteCustomer(custRef);
-
         Map<String, Object> response = new HashMap<>();
-        response.put("success", deleted);
+
+        Optional<Customer> customer = customerRepository.findByCustRef(custRef);
+
+        if (customer.isEmpty()) {
+            response.put("success", false);
+            response.put("message", "Customer not found");
+            return response;
+        }
+
+        customerRepository.delete(customer.get());
+
+        response.put("success", true);
+        response.put("message", "Customer deleted");
 
         return response;
     }

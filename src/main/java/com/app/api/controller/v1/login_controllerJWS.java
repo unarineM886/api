@@ -3,8 +3,13 @@ package com.app.api.controller.v1;
 import com.app.api.Util.ReallyStrongSecuredPassword;
 import com.app.api.Entity.Customer_login;
 import com.app.api.Entity.Employee;
+//import com.app.api.Entity.ServicePlan;
+import com.app.api.Security.JWS_utility;
 import com.app.api.respitory.customer_login_respority;
 import com.app.api.respitory.employee_respitory;
+//import com.app.api.respitory.customer_login_respitory_service;
+
+import za.co.VenLinkWeb.Support.Print;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +18,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/v1/users")
-public class login_controllerV1 {
+public class login_controllerJWS {
 
     @Autowired
     private customer_login_respority customerRepo;
@@ -21,7 +26,10 @@ public class login_controllerV1 {
     @Autowired
     private employee_respitory employeeRepo;
     
-    @PostMapping("/login")
+    @Autowired
+    private JWS_utility jwtUtil;
+    
+    @PostMapping("/loginjws")
     public Map<String, Object> loginUser(@RequestBody Map<String, String> loginRequest) {
 
         Map<String, Object> response = new HashMap<>();
@@ -37,34 +45,53 @@ public class login_controllerV1 {
             // 1. CHECK EMPLOYEE (username)
             // =========================
             Optional<Employee> employee = employeeRepo.findByEmpUsername(usernameNumber);
-
+            
             if (employee.isPresent()) {
             	
-            
-                if (encrypedPassword.equals(employee.get().getEmpPassword())) {
-
-                    response.put("success", true);
-                    response.put("type", "employee");
-                    response.put("user", employee.get());
-                    return response;
-                }
+            	if (encrypedPassword.equals(employee.get().getEmpPassword())) {
+            		
+            	    String token = jwtUtil.generateToken(
+            	            usernameNumber,
+            	            "employee"
+            	    );
+            	    
+            	    
+            	    response.put("success", true);
+            	    response.put("type", "employee");
+            	    response.put("token", token);
+            	    response.put("user", employee.get());
+            	    
+            	    return response;
+            	}
             }
 
             // =========================
             // 2. CHECK CUSTOMER (cust_ref)
             // =========================
             Optional<Customer_login> customer = customerRepo.findByNumber(usernameNumber);
+            
 
             if (customer.isPresent()) {
-            
             	
-                if (encrypedPassword.equals(customer.get().getPassword())) {
+            	Customer_login cust = customer.get();
+            
+            	if (encrypedPassword.equals(cust.getPassword())) {
 
-                    response.put("success", true);
-                    response.put("type", "customer");
-                    response.put("user", customer.get());
-                    return response;
-                }
+            	    String token = jwtUtil.generateToken(
+            	            usernameNumber,
+            	            "customer"
+            	    );
+            	    
+            	    //List<ServicePlan> plans = cust.getServicePlans();
+
+            	    response.put("success", true);
+            	    response.put("type", "customer");
+            	    response.put("token", token);
+            	    response.put("user", customer.get());
+            	    //response.put("plans", plans);
+
+            	    return response;
+            	}
             }
 
             response.put("success", false);
@@ -133,7 +160,7 @@ public class login_controllerV1 {
     }*/
     
     
-    @PostMapping("/signup")
+    @PostMapping("/signupjws")
     public Map<String, Object> setCustomerPassword(@RequestBody Map<String, String> request) {
 
         Map<String, Object> response = new HashMap<>();

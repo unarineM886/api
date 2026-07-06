@@ -1,4 +1,4 @@
-package com.app.api.controller.v2;
+/*package com.app.api.controller.v2;
 import com.app.api.Entity.InstallationLog;
 import com.app.api.Entity.addCustomer;
 //import com.app.api.respitory.InstallationLog_respitory;
@@ -85,4 +85,4 @@ public class customer_login_respority {
 public String ping() {
     return "PUT WORKS";
 }
-}
+}*/

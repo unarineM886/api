@@ -53,7 +53,7 @@ public class paymentControllerV1 {
     public static class PaymentRequest {
         private double amount;
         private String itemName;
-        private int userId;
+        //private int userId;
         private String ref_Number;
 
         // getters and setters
@@ -61,8 +61,8 @@ public class paymentControllerV1 {
         public void setAmount(double amount) { this.amount = amount; }
         public String getItemName() { return itemName; }
         public void setItemName(String itemName) { this.itemName = itemName; }
-        public int getUserId() { return userId; }
-        public void setUserId(int userId) { this.userId = userId; }
+        //public int getUserId() { return userId; }
+        //public void setUserId(int userId) { this.userId = userId; }
         public String getRef_Number() { return ref_Number; }
         public void setRef_Number(String ref_Number) { this.ref_Number = ref_Number; }
     }

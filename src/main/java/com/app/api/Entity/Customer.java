@@ -24,9 +24,7 @@ public class Customer {
     @Column(name = "cust_title")
     private String custTitle;
     
-    @Column(name = "service")
-    private String service;
-    
+       
     @Column(name = "address")
     private String address;
     
@@ -36,14 +34,14 @@ public class Customer {
     @Column(name = "installer")
     private String installer;
     
-    @Column(name = "service_plan")
-    private String servicePlan;
+    /*@Column(name = "service_plan")
+    private String servicePlan;*/
     
     @Column(name = "install_date")
     private LocalDate installDate;
     
-    @Column(name = "install_rate")
-    private Integer installRate;
+    /*@Column(name = "install_rate")
+    private Integer installRate;*/
     
     @Column(name = "payment_method")
     private String paymentMethod;
@@ -69,8 +67,6 @@ public class Customer {
     @Column(name = "account_type")
     private String accountType;
     
-    @Column(name = "client_id")
-    private Integer clientId;
     
     @Column(name = "refered_by")
     private String referedBy;
@@ -78,7 +74,7 @@ public class Customer {
     @Column(name = "referer_ref")
     private String refererRef;
     
-    @Column(name = "install_discount")
+    /*@Column(name = "install_discount")
     private String installDiscount;
     
     @Column(name = "mini_ups")
@@ -92,7 +88,7 @@ public class Customer {
     
     @Column(name = "kilometer")
     private String kilometer;
-    
+    */
     @Column(name = "company_name")
     private String companyName;
     
@@ -118,9 +114,6 @@ public class Customer {
     public String getCustTitle() { return custTitle; }
     public void setCustTitle(String custTitle) { this.custTitle = custTitle; }
     
-    public String getService() { return service; }
-    public void setService(String service) { this.service = service; }
-    
     public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
     
@@ -130,14 +123,8 @@ public class Customer {
     public String getInstaller() { return installer; }
     public void setInstaller(String installer) { this.installer = installer; }
     
-    public String getServicePlan() { return servicePlan; }
-    public void setServicePlan(String servicePlan) { this.servicePlan = servicePlan; }
-    
     public LocalDate getInstallDate() { return installDate; }
     public void setInstallDate(LocalDate installDate) { this.installDate = installDate; }
-    
-    public Integer getInstallRate() { return installRate; }
-    public void setInstallRate(Integer installRate) { this.installRate = installRate; }
     
     public String getPaymentMethod() { return paymentMethod; }
     public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
@@ -163,16 +150,13 @@ public class Customer {
     public String getAccountType() { return accountType; }
     public void setAccountType(String accountType) { this.accountType = accountType; }
     
-    public Integer getClientId() { return clientId; }
-    public void setClientId(Integer clientId) { this.clientId = clientId; }
-    
     public String getReferedBy() { return referedBy; }
     public void setReferedBy(String referedBy) { this.referedBy = referedBy; }
     
     public String getRefererRef() { return refererRef; }
     public void setRefererRef(String refererRef) { this.refererRef = refererRef; }
     
-    public String getInstallDiscount() { return installDiscount; }
+    /*public String getInstallDiscount() { return installDiscount; }
     public void setInstallDiscount(String installDiscount) { this.installDiscount = installDiscount; }
     
     public String getMiniUps() { return miniUps; }
@@ -186,7 +170,7 @@ public class Customer {
     
     public String getKilometer() { return kilometer; }
     public void setKilometer(String kilometer) { this.kilometer = kilometer; }
-    
+    */
     public String getCompanyName() { return companyName; }
     public void setCompanyName(String companyName) { this.companyName = companyName; }
     

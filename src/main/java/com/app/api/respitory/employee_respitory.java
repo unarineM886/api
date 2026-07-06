@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface employee_respitory extends JpaRepository<Employee, Long> 
 {
     Optional<Employee> findByEmpUsernameAndEmpPassword(String empUsername, String empPassword);
+    Optional<Employee> findByEmpUsername(String empUsername);
 }

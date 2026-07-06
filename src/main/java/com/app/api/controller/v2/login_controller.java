@@ -38,7 +38,7 @@ public class login_controller {
             // CUSTOMER LOGIN
             // =========================
             Optional<Customer_login> customer =
-                    customerRepo.findByUsernameAndPassword(username, encryptedPassword);
+                    customerRepo.findByNumberAndPassword(username, encryptedPassword);
 
             if (customer.isPresent()) {
                 response.put("success", true);

@@ -1,4 +1,4 @@
-package com.app.api.controller.v1;
+/*package com.app.api.controller.v1;
 
 import com.app.api.Entity.InstallationLog;
 import com.app.api.Entity.addCustomer;
@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 
 
 
@@ -143,5 +142,5 @@ public class add_customerV1 {
         }
 
         return response;
-    }*/
-}
+    }
+}*/

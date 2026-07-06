@@ -1,4 +1,4 @@
-package com.app.api.controller.v2;
+/*package com.app.api.controller.v2;
 
 import com.app.api.Entity.Customer;
 import com.app.api.Service.InstallationLogService;
@@ -67,4 +67,4 @@ public class InstallationLogController {
 
         return response;
     }
-}
+}*/

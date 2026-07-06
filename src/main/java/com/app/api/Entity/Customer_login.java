@@ -1,6 +1,7 @@
 package com.app.api.Entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -12,42 +13,90 @@ public class Customer_login {
 
     @Column(name = "cust_surname")
     private String username;
+    
+    @Column(name = "cust_name")
+    private String name;
 
     @Column(name = "password")
     private String password;
 
     @Column(name = "cust_ref")
-    private String phone_number;
+    private String number;
+    
+    @Column(name ="cust_email")
+    private String email;
+    
+    @Column(name = "client_id")
+    private Long clientId;
 
-    @Column(name = "cust_title")
-    private String title;
+    
+    
+    /*@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "client_id",
+        referencedColumnName = "client_id",
+        insertable = false,
+        updatable = false
+    )
+    private ServicePlan servicePlan; */
+    
+    
+    
+    /*public List<ServicePlan> getServicePlans() {
+        return servicePlans;
+    }
+    
+    
 
+    public void setServicePlans(List<ServicePlan> servicePlans) {
+        this.servicePlans = servicePlans;
+    }*/
+    
+    
+    /*public ServicePlan getServicePlan() {
+        return servicePlan;
+    }
 
+    public void setServicePlan(ServicePlan servicePlan) {
+        this.servicePlan = servicePlan;
+    }*/
 
-    private String plan;
-    private String address;
+    /*@Column(name = "cust_title")
+    private String title; */
+
+    
+    /*private String plan;
+    private String address; */
 
     
 
-    public String getPlan() {
+    /*public String getPlan() {
         return plan;
     }
 
     public void setPlan(String plan) {
         this.plan = plan;
+    }*/
+
+    public String getNumber() {
+        return number;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public void setNumber(String number) {
+        this.number = number;
     }
-
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    
+    public String getEmail() {
+    	return email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 
     // Getters and setters
-    public Long getId() 
+    /*public Long getId() 
     { 
         return id; 
     }
@@ -55,7 +104,7 @@ public class Customer_login {
     public void setId(Long id) 
     {
          this.id = id; 
-    }
+    }*/
 
     public String getUsername()
     {
@@ -65,6 +114,16 @@ public class Customer_login {
     public void setUsername(String username) 
     {
         this.username = username;
+    }
+    
+    public String getName()
+    {
+        return name; 
+    }
+
+    public void setName(String name) 
+    {
+        this.name = name;
     }
 
     public String getPassword() 
@@ -76,9 +135,20 @@ public class Customer_login {
     { 
         this.password = password;
     }
+    
+    
+    public long getClientId() 
+    { 
+        return clientId; 
+    }
+
+    public void setClientId(long clientId) 
+    { 
+        this.clientId = clientId;
+    }
 
     
-    public void setAddress(String address) 
+    /*public void setAddress(String address) 
     { 
         this.address = address;
     }
@@ -86,7 +156,7 @@ public class Customer_login {
     public String getAddress() 
     { 
         return address; 
-    }
+    }*/
 
     
 }

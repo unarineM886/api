@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "enquiry")
 public class addCustomer {
 
     @Id
@@ -25,6 +25,8 @@ public class addCustomer {
     private String service;
     private String previous_isp;
     private String refered_by;
+    private String service_plan;
+    private String install_additional_instruction;
 
     private String account_status;
     private LocalDate order_date;
@@ -33,16 +35,13 @@ public class addCustomer {
     private String filled_through;
     private String order_number;
 
-    private String install_payment_method;
-    private String payment_method;
-    private String debit_payment_date;
+    
 
     @Column(name = "order_status")
     private String orderStatus;
 
     // getters and setters
     
-
     public String getCustRef() {
         return custRef;
     }
@@ -51,9 +50,31 @@ public class addCustomer {
         this.custRef = custRef ;
         this.phone_number = custRef; // Set phone_number to the same value as cust_ref
     }
+    
+    public String getCust_email() {
+        return cust_email;
+    }
 
+    public void setCust_email(String cust_email) {
+        this.cust_email = cust_email ;
+        
+    }
+    
+    public String getService_plan() {
+        return service_plan;
+    }
 
+    public void setService_plan(String service_plan) {
+        this.service_plan = service_plan ;
+    }
+    
+    public String getInstall_additional_instruction() {
+        return install_additional_instruction;
+    }
 
+    public void setinstall_additional_instruction(String install_additional_instruction) {
+        this.install_additional_instruction = install_additional_instruction ;
+    }
 
     // Getters and setters
     public Long getId() 
@@ -196,27 +217,4 @@ public class addCustomer {
         this.order_number = order_number;
     }
 
-    public String getInstall_payment_method() {
-        return install_payment_method;
-    }
-
-    public void setInstall_payment_method(String install_payment_method) {
-        this.install_payment_method = install_payment_method;
-    }
-
-    public String getPayment_method() {
-        return payment_method;
-    }
-
-    public void setPayment_method(String payment_method) {
-        this.payment_method = payment_method;
-    }
-
-    public String getDebit_payment_date() {
-        return debit_payment_date;
-    }
-
-    public void setDebit_payment_date(String debit_payment_date) {
-        this.debit_payment_date = debit_payment_date;
-    }
 }
